@@ -1,28 +1,23 @@
 import {
-  Avatar,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
-  IconButton,
+  styled,
+  Typography,
 } from "@mui/material";
 import React from "react";
-import { MoreVert as MoreVertIcon } from "@mui/icons-material";
 
-import "./Post.css";
+import PostHeader from "./PostHeader";
+
+const StyledCard = styled(Card)`
+  width: 100%;
+  max-width: 400px;
+`;
 
 const Post: React.FC = () => {
   return (
-    <Card classes={{ root: "post__card" }}>
-      <CardHeader
-        avatar={<Avatar classes={{ root: "post_avatar" }}>JB</Avatar>}
-        title="jbyomuhangi"
-        action={
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        }
-      />
+    <StyledCard>
+      <PostHeader />
 
       <CardMedia
         component="img"
@@ -31,8 +26,10 @@ const Post: React.FC = () => {
         alt="Paella dish"
       />
 
-      <CardContent>hello there, this is the post body </CardContent>
-    </Card>
+      <CardContent>
+        <Typography>hello there, this is the post body</Typography>
+      </CardContent>
+    </StyledCard>
   );
 };
 
