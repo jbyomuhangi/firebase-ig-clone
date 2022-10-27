@@ -9,10 +9,7 @@ import React from "react";
 
 import PostHeader from "./PostHeader";
 
-const StyledCard = styled(Card)`
-  width: 100%;
-  max-width: 400px;
-`;
+const StyledCard = styled(Card)({ width: "100%", maxWidth: "400px" });
 
 const Post: React.FC = () => {
   return (
