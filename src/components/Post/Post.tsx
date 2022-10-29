@@ -9,7 +9,12 @@ import React from "react";
 
 import PostHeader from "./PostHeader";
 
-const PostCardContainer = styled(Card)({ width: "100%", maxWidth: "400px" });
+const PostCardContainer = styled(Card)(({ theme }) => ({
+  width: "100%",
+  maxWidth: "400px",
+  boxShadow: "unset",
+  border: `1px solid ${theme.palette.grey[300]}}`,
+}));
 
 const Post: React.FC = () => {
   return (

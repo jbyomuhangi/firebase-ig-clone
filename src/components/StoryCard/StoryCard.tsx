@@ -3,7 +3,12 @@ import React from "react";
 
 import StoryAvatar from "./StoryAvatar";
 
-const StoryCardContainer = styled(Card)({ width: "100%", maxWidth: "400px" });
+const StoryCardContainer = styled(Card)(({ theme }) => ({
+  width: "100%",
+  maxWidth: "400px",
+  boxShadow: "unset",
+  border: `1px solid ${theme.palette.grey[300]}}`,
+}));
 
 const StoryCardContent = styled(CardContent)({
   display: "flex",
