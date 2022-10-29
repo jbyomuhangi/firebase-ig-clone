@@ -10,15 +10,15 @@ const StoryCardContainer = styled(Card)(({ theme }) => ({
   border: `1px solid ${theme.palette.grey[300]}}`,
 }));
 
-const StoryCardContent = styled(CardContent)({
+const StoryCardContent = styled(CardContent)(({ theme }) => ({
   display: "flex",
-  gap: "10px",
+  gap: theme.spacing(1),
   overflow: "auto",
 
   "&::-webkit-scrollbar": {
     display: "none",
   },
-});
+}));
 
 const StoryCard: React.FC = () => {
   return (

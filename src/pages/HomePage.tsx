@@ -4,13 +4,13 @@ import React from "react";
 import Post from "../components/Post";
 import StoryCard from "../components/StoryCard";
 
-const HopePageContainer = styled(Box)({
+const HopePageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  gap: "20px",
-  paddingBottom: "20px",
-});
+  gap: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
+}));
 
 const HomePage: React.FC = () => {
   return (

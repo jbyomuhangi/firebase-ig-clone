@@ -2,12 +2,12 @@ import React from "react";
 
 import { Avatar, styled, Box, Typography } from "@mui/material";
 
-const StoryAvatarContainer = styled(Box)({
+const StoryAvatarContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  gap: "5px",
-});
+  gap: theme.spacing(1),
+}));
 
 const StyledStoryAvatar = styled(Avatar)({ cursor: "pointer" });
 

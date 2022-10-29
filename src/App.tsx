@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppBarLayout from "./layouts/AppBarLayout";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
+import Profile from "./pages/Profile";
 import theme from "./theme";
 
 const App: React.FC = () => {
@@ -16,6 +17,7 @@ const App: React.FC = () => {
             <Route index element={<HomePage />} />
           </Route>
 
+          <Route path="/:username" element={<Profile />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
