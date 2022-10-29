@@ -4,7 +4,7 @@ import { Box, styled } from "@mui/material";
 import ProfileSummary from "../components/ProfileSummary";
 import ProfileBody from "../components/ProfileBody";
 
-const ProfileContainer = styled(Box)(({ theme }) => ({
+const ProfilePageContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   padding: theme.spacing(2),
@@ -18,15 +18,15 @@ const ProfileContentContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(10),
 }));
 
-const Profile: React.FC = () => {
+const ProfilePage: React.FC = () => {
   return (
-    <ProfileContainer>
+    <ProfilePageContainer>
       <ProfileContentContainer>
         <ProfileSummary />
         <ProfileBody />
       </ProfileContentContainer>
-    </ProfileContainer>
+    </ProfilePageContainer>
   );
 };
 
-export default Profile;
+export default ProfilePage;
