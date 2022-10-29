@@ -2,8 +2,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import AppBarLayout from "./layouts/AppBarLayout";
 import ErrorPage from "./pages/ErrorPage";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 import theme from "./theme";
 
 const App: React.FC = () => {
@@ -11,7 +12,10 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<AppBarLayout />}>
+            <Route index element={<HomePage />} />
+          </Route>
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

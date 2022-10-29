@@ -9,11 +9,11 @@ import React from "react";
 
 import PostHeader from "./PostHeader";
 
-const StyledCard = styled(Card)({ width: "100%", maxWidth: "400px" });
+const PostCardContainer = styled(Card)({ width: "100%", maxWidth: "400px" });
 
 const Post: React.FC = () => {
   return (
-    <StyledCard>
+    <PostCardContainer>
       <PostHeader />
 
       <CardMedia
@@ -26,7 +26,7 @@ const Post: React.FC = () => {
       <CardContent>
         <Typography>hello there, this is the post body</Typography>
       </CardContent>
-    </StyledCard>
+    </PostCardContainer>
   );
 };
 
