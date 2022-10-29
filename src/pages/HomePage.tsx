@@ -9,7 +9,6 @@ const HopePageContainer = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   alignItems: "center",
   gap: theme.spacing(2),
-  paddingBottom: theme.spacing(2),
 }));
 
 const HomePage: React.FC = () => {

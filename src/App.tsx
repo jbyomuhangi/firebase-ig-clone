@@ -15,10 +15,9 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<AppBarLayout />}>
             <Route index element={<HomePage />} />
+            <Route path="/profile/:username" element={<ProfilePage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
-
-          <Route path="/:username" element={<ProfilePage />} />
-          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
