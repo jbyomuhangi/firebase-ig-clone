@@ -2,24 +2,23 @@ import { Box, styled } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import AppBar from "../components/AppBar";
-import theme from "../theme";
+import DefaultNavBar from "./DefaultNavBar";
 
 const AppContainer = styled(Box)(() => ({
   display: "flex",
 }));
 
-const OutletContainer = styled(Box)(() => ({
+const OutletContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flex: 1,
   justifyContent: "center",
   padding: theme.spacing(2),
 }));
 
-const AppBarLayout: React.FC = () => {
+const DefaultAppLayout: React.FC = () => {
   return (
     <AppContainer>
-      <AppBar />
+      <DefaultNavBar />
 
       <OutletContainer>
         <Outlet />
@@ -28,4 +27,4 @@ const AppBarLayout: React.FC = () => {
   );
 };
 
-export default AppBarLayout;
+export default DefaultAppLayout;

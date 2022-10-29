@@ -1,26 +1,34 @@
-import { ThemeProvider } from "@mui/material/styles";
-import React from "react";
+import { Theme } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React, { useMemo } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AppBarLayout from "./layouts/AppBarLayout";
+import DefaultAppLayout from "./layouts/DefaultAppLayout";
+import ExtraSmallScreenAppLayout from "./layouts/ExtraSmallScreenAppLayout";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
-import theme from "./theme";
 
 const App: React.FC = () => {
+  const isExtraSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("sm")
+  );
+
+  const LayoutComponent = useMemo((): React.FC => {
+    if (isExtraSmallScreen) return ExtraSmallScreenAppLayout;
+    return DefaultAppLayout;
+  }, [isExtraSmallScreen]);
+
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AppBarLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/profile/:username" element={<ProfilePage />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LayoutComponent />}>
+          <Route index element={<HomePage />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
