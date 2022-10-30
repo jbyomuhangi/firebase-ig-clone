@@ -1,4 +1,5 @@
-import { Box, Button, styled, Typography } from "@mui/material";
+import { Box, Button, styled, Theme, Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +18,20 @@ const DefaultNavBarContainer = styled(Box)(({ theme }) => ({
   height: "100vh",
   backgroundColor: theme.palette.common.white,
   borderRight: `1px solid ${theme.palette.grey[400]}`,
+
+  [theme.breakpoints.down("lg")]: {
+    width: "fit-content",
+  },
 }));
 
 const DefaultNavBarContentContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
+
+  [theme.breakpoints.down("lg")]: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 }));
 
 const NavButtonContainer = styled(Box)(({ theme }) => ({
@@ -30,14 +41,24 @@ const NavButtonContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(5),
 }));
 
-const NavButtonComponent = styled(Button)(() => ({
+const NavButtonComponent = styled(Button)(({ theme }) => ({
   "&.MuiButton-root": {
     justifyContent: "flex-start",
+  },
+
+  [theme.breakpoints.down("lg")]: {
+    "&.MuiButton-root": {
+      justifyContent: "center",
+      minWidth: "30px",
+    },
   },
 }));
 
 const DefaultNavBar: React.FC = () => {
   const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("lg")
+  );
 
   const handleNavigate = (button: AppNavButtonInterface): void => {
     navigate(button.path);
@@ -46,7 +67,11 @@ const DefaultNavBar: React.FC = () => {
   return (
     <DefaultNavBarContainer>
       <DefaultNavBarContentContainer>
-        <Typography>Firebase Instagram Clone</Typography>
+        {isSmallScreen ? (
+          <Typography>FIC</Typography>
+        ) : (
+          <Typography>Firebase Instagram Clone</Typography>
+        )}
 
         <NavButtonContainer>
           {defaultNavBarButtons.map((button) => {
@@ -54,9 +79,9 @@ const DefaultNavBar: React.FC = () => {
               <NavButtonComponent
                 key={button.name}
                 onClick={() => handleNavigate(button)}
-                startIcon={button.startIcon}
+                startIcon={isSmallScreen ? null : button.startIcon}
               >
-                {button.name}
+                {isSmallScreen ? button.startIcon : button.name}
               </NavButtonComponent>
             );
           })}
