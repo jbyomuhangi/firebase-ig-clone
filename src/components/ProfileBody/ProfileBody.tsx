@@ -1,7 +1,9 @@
+import { Box, Button, styled, Theme, Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
-import { Box, styled, Typography } from "@mui/material";
 
-import ImageTile from "./ImageTile";
+// import ImageTile from "./ImageTile";
+import ExtraSmallScreenStatSummary from "../ProfileSummary/ExtraSmallScreenProfileSummary/ExtraSmallScreenStatSummary";
 
 type ProfileTab = {
   name: string;
@@ -14,17 +16,6 @@ const ProfileTabsContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-const ProfileTabContainer = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  cursor: "pointer",
-}));
-
-const ProfilePostsContainer = styled(Box)({
-  display: "flex",
-  gap: "20px",
-  flexWrap: "wrap",
-});
-
 const profileTabs: ProfileTab[] = [
   { name: "Posts" },
   { name: "Saved" },
@@ -32,19 +23,27 @@ const profileTabs: ProfileTab[] = [
 ];
 
 const ProfileBody: React.FC = () => {
+  const isExtraSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("sm")
+  );
+
   return (
     <Box>
-      <ProfileTabsContainer>
-        {profileTabs.map((tab) => {
-          return (
-            <ProfileTabContainer key={tab.name}>
-              <Typography>{tab.name}</Typography>
-            </ProfileTabContainer>
-          );
-        })}
-      </ProfileTabsContainer>
+      <Box>
+        {isExtraSmallScreen && <ExtraSmallScreenStatSummary />}
 
-      <ProfilePostsContainer>
+        <ProfileTabsContainer>
+          {profileTabs.map((tab) => {
+            return (
+              <Button key={tab.name} sx={{ flex: { xs: 1, sm: "unset" } }}>
+                <Typography>{tab.name}</Typography>
+              </Button>
+            );
+          })}
+        </ProfileTabsContainer>
+      </Box>
+
+      {/* <ProfilePostsContainer>
         <ImageTile />
         <ImageTile />
         <ImageTile />
@@ -65,7 +64,7 @@ const ProfileBody: React.FC = () => {
         <ImageTile />
         <ImageTile />
         <ImageTile />
-      </ProfilePostsContainer>
+      </ProfilePostsContainer> */}
     </Box>
   );
 };
