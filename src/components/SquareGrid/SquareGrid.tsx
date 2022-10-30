@@ -1,6 +1,8 @@
 import { Box, styled } from "@mui/material";
 import React, { useMemo } from "react";
 
+import { returnNull } from "../../utils/noopUtils";
+
 const SquareGridContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -15,17 +17,18 @@ const GridRowContainer = styled(Box)(({ theme }) => ({
 const GridItemContainer = styled(Box)(() => ({
   flex: 1,
   aspectRatio: "1/1",
-  backgroundColor: "yellow",
 }));
 
 interface SquareGridProps {
   data?: any[];
   itemsPerRow?: number;
+  itemRenderer?: (data: any) => React.ReactNode;
 }
 
 const SquareGrid: React.FC<SquareGridProps> = ({
   itemsPerRow = 3,
-  data = [1, 2, 3, 4, 5, 6, 7],
+  data = [],
+  itemRenderer = returnNull,
 }) => {
   const columnNumbers = useMemo(() => {
     const columnCount = Math.ceil(data.length / itemsPerRow);
@@ -44,8 +47,11 @@ const SquareGrid: React.FC<SquareGridProps> = ({
             {rowNumbers.map((rowNumber) => {
               const itemIndex = columnNumber * itemsPerRow + rowNumber;
               const item = data[itemIndex];
+
               return (
-                <GridItemContainer key={rowNumber}>{item}</GridItemContainer>
+                <GridItemContainer key={rowNumber}>
+                  {item && itemRenderer(item)}
+                </GridItemContainer>
               );
             })}
           </GridRowContainer>
