@@ -1,5 +1,10 @@
+import { Avatar, Box, styled, Theme, Typography } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import React from "react";
-import { Box, styled, Avatar, Typography } from "@mui/material";
+
+import StatSummary from "./StatSummary";
+import ExtraSmallScreenProfileSummary from "./ExtraSmallScreenProfileSummary";
+import Username from "./Username";
 
 const ProfileSummaryContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -7,10 +12,10 @@ const ProfileSummaryContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(10),
 }));
 
-const StyledAvatar = styled(Avatar)({
+const StyledAvatar = styled(Avatar)(() => ({
   height: "150px",
   width: "150px",
-});
+}));
 
 const SummaryContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -19,14 +24,22 @@ const SummaryContainer = styled(Box)(({ theme }) => ({
 }));
 
 const ProfileSummary: React.FC = () => {
+  const isExtraSmallScreen = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("sm")
+  );
+
+  if (isExtraSmallScreen) return <ExtraSmallScreenProfileSummary />;
+
   return (
     <ProfileSummaryContainer>
       <StyledAvatar />
 
       <SummaryContainer>
-        <Typography>username goes here</Typography>
-        <Typography>posts and follower content goes here</Typography>
-        <Typography>Actual name of user</Typography>
+        <Username />
+
+        <StatSummary />
+
+        <Typography sx={{ fontWeight: "bold" }}>full username</Typography>
       </SummaryContainer>
     </ProfileSummaryContainer>
   );

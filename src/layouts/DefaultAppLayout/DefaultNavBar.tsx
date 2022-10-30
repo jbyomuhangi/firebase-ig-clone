@@ -56,7 +56,7 @@ const NavButtonComponent = styled(Button)(({ theme }) => ({
 
 const DefaultNavBar: React.FC = () => {
   const navigate = useNavigate();
-  const isSmallScreen = useMediaQuery((theme: Theme) =>
+  const isMediumScreen = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down("lg")
   );
 
@@ -67,7 +67,7 @@ const DefaultNavBar: React.FC = () => {
   return (
     <DefaultNavBarContainer>
       <DefaultNavBarContentContainer>
-        {isSmallScreen ? (
+        {isMediumScreen ? (
           <Typography>FIC</Typography>
         ) : (
           <Typography>Firebase Instagram Clone</Typography>
@@ -79,9 +79,9 @@ const DefaultNavBar: React.FC = () => {
               <NavButtonComponent
                 key={button.name}
                 onClick={() => handleNavigate(button)}
-                startIcon={isSmallScreen ? null : button.startIcon}
+                startIcon={isMediumScreen ? null : button.startIcon}
               >
-                {isSmallScreen ? button.startIcon : button.name}
+                {isMediumScreen ? button.startIcon : button.name}
               </NavButtonComponent>
             );
           })}

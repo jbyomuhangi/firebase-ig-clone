@@ -2,7 +2,7 @@ import React from "react";
 import { Box, styled } from "@mui/material";
 
 import ProfileSummary from "../components/ProfileSummary";
-import ProfileBody from "../components/ProfileBody";
+// import ProfileBody from "../components/ProfileBody";
 
 const ProfileContentContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -16,7 +16,7 @@ const ProfilePage: React.FC = () => {
   return (
     <ProfileContentContainer>
       <ProfileSummary />
-      <ProfileBody />
+      {/* <ProfileBody /> */}
     </ProfileContentContainer>
   );
 };
